@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ИИ в EatMe — концепт</title>
+<style>
+:root { --green: #00a973; --green-text: #00774f; --green-subtle: #d2eee5; --bg: #f5f5fa; --line: #e7e7eb; --text: #1d1d1e; --muted: #565658; --warn: #fff6d9; --warn-text: #855b00; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: var(--text); background: var(--bg); line-height: 1.55; font-size: 17px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px 80px; }
+header { background: #fff; border-bottom: 1px solid var(--line); }
+header .wrap { padding-top: 48px; padding-bottom: 36px; }
+.kicker { color: var(--green-text); font-weight: 600; font-size: 14px; letter-spacing: .02em; text-transform: uppercase; }
+h1 { font-size: 40px; line-height: 1.15; margin: 10px 0 14px; letter-spacing: -0.02em; }
+.lead { font-size: 19px; color: var(--muted); max-width: 760px; margin: 0; }
+.howto { margin-top: 24px; background: var(--green-subtle); border-radius: 14px; padding: 14px 18px; font-size: 15.5px; max-width: 820px; }
+nav.toc { background: #fff; border-radius: 18px; padding: 20px 24px; margin: 28px 0 0; columns: 2; column-gap: 40px; font-size: 15.5px; }
+nav.toc a { display: block; color: var(--text); text-decoration: none; padding: 3px 0; break-inside: avoid; }
+nav.toc a:hover { color: var(--green-text); }
+section { background: #fff; border-radius: 22px; padding: 30px 32px; margin-top: 22px; }
+h2 { font-size: 28px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.01em; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+h3 { font-size: 21px; margin: 30px 0 6px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.num { color: var(--green-text); margin-right: 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 22px; margin: 10px 0; }
+li { margin: 6px 0; }
+figure { margin: 18px 0 8px; }
+figure img { width: 100%; height: auto; display: block; border-radius: 14px; border: 1px solid var(--line); background: var(--bg); }
+figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; }
+.note { background: var(--warn); color: #4d3a00; border-radius: 14px; padding: 14px 18px; font-size: 15.5px; margin: 16px 0; }
+.good { background: var(--green-subtle); border-radius: 14px; padding: 14px 18px; font-size: 15.5px; margin: 16px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 14px 0; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: var(--bg); font-weight: 600; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13.5px; background: var(--bg); padding: 1px 5px; border-radius: 5px; }
+details { margin: 14px 0; border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px; }
+details summary { cursor: pointer; font-weight: 600; }
+.comment { font-size: 14px; font-weight: 600; color: var(--green-text); text-decoration: none; white-space: nowrap; border: 1.5px solid var(--green); border-radius: 999px; padding: 4px 12px; flex: none; }
+.comment:hover { background: var(--green-subtle); }
+.tag { display: inline-block; font-size: 13px; font-weight: 600; border-radius: 999px; padding: 2px 10px; background: var(--bg); color: var(--muted); margin-right: 6px; }
+.tag.g { background: var(--green-subtle); color: var(--green-text); }
+.tag.y { background: var(--warn); color: var(--warn-text); }
+footer { color: var(--muted); font-size: 14px; margin-top: 30px; }
+@media (max-width: 720px) { h1 { font-size: 30px; } nav.toc { columns: 1; } section { padding: 22px 18px; } h2 { font-size: 23px; flex-direction: column; } h3 { flex-direction: column; } }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="kicker">EatMe · концепт · 3 ноября 2026</div>
+  <h1>ИИ в EatMe: как это могло бы выглядеть</h1>
+  <p class="lead">Пять идей: две для админки, три для мобильного приложения. Это концепт, а не реализация: макеты статичные, но построены на реальных экранах, данных и API продукта. По каждой идее разобрано, что уже есть, чего не хватает и где риски.</p>
+  <div class="howto"><b>Как оставить комментарий.</b> У каждого раздела есть кнопка «Комментировать» — она откроет GitHub с готовым заголовком (нужен аккаунт GitHub). Без аккаунта просто ответьте тому, кто прислал ссылку, и укажите номер раздела, например «4.2».</div>
+  <nav class="toc">
+    <a href="#summary">1. Коротко</a>
+    <a href="#facts">2. Что уже есть и чего не хватает</a>
+    <a href="#admin">3. Админка</a>
+    <a href="#a-content">&nbsp;&nbsp;3.1 Переводы и контент</a>
+    <a href="#a-menu">&nbsp;&nbsp;3.2 Генерация меню</a>
+    <a href="#a-inbox">&nbsp;&nbsp;3.3 Обращения</a>
+    <a href="#a-renewals">&nbsp;&nbsp;3.4 Клиенты на продление</a>
+    <a href="#a-settings">&nbsp;&nbsp;3.5 Настройки ИИ</a>
+    <a href="#mobile">4. Мобильное приложение</a>
+    <a href="#m-picker">&nbsp;&nbsp;4.1 Подбор программы</a>
+    <a href="#m-renewal">&nbsp;&nbsp;4.2 Продление</a>
+    <a href="#m-support">&nbsp;&nbsp;4.3 Поддержка</a>
+    <a href="#arch">5. Как это устроено</a>
+    <a href="#safety">6. Безопасность</a>
+    <a href="#cost">7. Сколько стоит</a>
+    <a href="#quality">8. Проверка качества</a>
+    <a href="#backend">9. Что нужно от бэкенда</a>
+    <a href="#order">10. Порядок внедрения</a>
+    <a href="#questions">11. Открытые вопросы</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+
+<section id="summary">
+  <h2><span><span class="num">1</span>Коротко</span><a class="comment" data-c="1. Коротко">Комментировать</a></h2>
+  <ul>
+    <li><b>Начинать стоит с админки.</b> Перевод блюд и генерация меню экономят часы руками, нужны только внутренним сотрудникам и не требуют персональных данных клиентов. Всё, что создаёт ИИ, остаётся черновиком, пока человек его не примет.</li>
+    <li><b>Языки почти бесплатные.</b> Бэкенд уже хранит названия и описания на 4 языках (RU, KK, EN, UZ), а админка заполняет только RU и KK. Поля есть, их просто никто не заполняет.</li>
+    <li><b>Генерация меню — главный эффект для кухни.</b> Сейчас каждое блюдо на каждый день программы назначают руками. ИИ может собирать черновик на две недели за минуту, но жёсткие правила должен проверять обычный алгоритм, а не модель.</li>
+    <li><b>Клиентские чаты — следующий этап.</b> Для них нужен отдельный серверный сервис, а для продлений — данные и пуши, которых в бэкенде пока нет.</li>
+    <li><b>Главный принцип: ИИ ничего не меняет сам.</b> Он читает данные и готовит предложение, а применяет его человек кнопкой — клиент в приложении или сотрудник в админке.</li>
+  </ul>
+</section>
+
+<section id="facts">
+  <h2><span><span class="num">2</span>Что уже есть и чего не хватает</span><a class="comment" data-c="2. Что уже есть и чего не хватает">Комментировать</a></h2>
+  <p><span class="tag g">есть</span> на что ИИ может опереться уже сейчас:</p>
+  <ul>
+    <li>4 языка у блюд, программ и приёмов пищи (заполнены только RU и KK).</li>
+    <li>Расчёт суточной нормы калорий по возрасту, росту, весу, цели и активности — тот же, что у калькулятора в приложении.</li>
+    <li>Предпросмотры изменений заказа: заморозка, время и адрес доставки, калории, исключённые дни. Каждый возвращает точные последствия до того, как клиент нажмёт «Применить».</li>
+    <li>Справочник исключений питания: аллергии, ограничения по здоровью, нелюбимые продукты.</li>
+    <li>Каталог программ и меню программы на любую дату.</li>
+  </ul>
+  <p><span class="tag y">нет</span> чего не хватает:</p>
+  <ul>
+    <li><b>Состава и аллергенов у блюд.</b> Исключения хранятся в заказе, их учитывает кухня. Поэтому ИИ не может честно сказать «в этом меню нет орехов»; правильно — «отметьте орехи при оформлении, кухня исключит».</li>
+    <li><b>Граммовок порций.</b> КБЖУ указаны на 100 г, поэтому генератор меню не может держать калорийность дня под тариф 1 800 ккал — только баланс белков, жиров и углеводов.</li>
+    <li><b>Списка заканчивающихся заказов.</b> Раздел «Клиенты на продление» в админке сейчас пустой именно поэтому.</li>
+    <li><b>Отправки пушей с бэкенда.</b> Приложение к пушам готово, но рассылки с сервера нет.</li>
+    <li><b>Времени отметки доставки курьером</b> в данных, которые видит клиент: есть только дата и статус.</li>
+  </ul>
+</section>
+
+<section id="admin">
+  <h2><span><span class="num">3</span>Админка</span></h2>
+  <p>Пять экранов: два про контент и меню, три — админская сторона клиентских чатов.</p>
+
+  <h3 id="a-content"><span>3.1 Переводы и контент</span><a class="comment" data-c="3.1 Переводы и контент">Комментировать</a></h3>
+  <p>Перевод с русского на казахский, английский и узбекский — по кнопке в редакторе блюда или массово по всему справочнику. Перевод соблюдает словарь кухни: «Люля» и «Сырники» не переводятся, «Плов» становится «Палау». Результат ИИ всегда черновик в пунктирной рамке: клиенты не видят его, пока человек не нажал «Принять».</p>
+  <figure><a href="img/a1-dishes.png"><img src="img/a1-dishes.png" alt="Справочник блюд с массовым переводом" loading="lazy"></a><figcaption>Справочник блюд: какие языки заполнены, какие ждут проверки, массовый перевод.</figcaption></figure>
+  <figure><a href="img/a2-dish-drawer.png"><img src="img/a2-dish-drawer.png" alt="Редактор блюда с переводом и проверкой КБЖУ" loading="lazy"></a><figcaption>Редактор блюда: черновики переводов, «сделать описание аппетитнее», проверка КБЖУ.</figcaption></figure>
+  <div class="good"><b>Не всё здесь — ИИ.</b> Проверка КБЖУ — обычная арифметика: в примере из дизайна 14 г белков, 24 г жиров и 13 г углеводов дают около 324 ккал, а указано 236. Такую проверку можно добавить без всякого ИИ.</div>
+  <p><b>Чего не делать:</b> генерировать фото блюд. Клиент покупает то, что видит на фото, а сгенерированная картинка — не это блюдо.</p>
+
+  <h3 id="a-menu"><span>3.2 Генерация меню</span><a class="comment" data-c="3.2 Генерация меню">Комментировать</a></h3>
+  <p>Оператор выбирает период, включает правила и пишет пожелания своими словами. ИИ собирает черновик сетки «дни × приёмы пищи». У каждого блюда видна причина выбора, проблемные места подсвечены, а уже назначенные вручную блюда не трогаются.</p>
+  <figure><a href="img/a3-planner-generate.png"><img src="img/a3-planner-generate.png" alt="Настройки генерации меню" loading="lazy"></a><figcaption>Настройки: период, правила, пожелания своими словами.</figcaption></figure>
+  <figure><a href="img/a4-planner-draft.png"><img src="img/a4-planner-draft.png" alt="Черновик меню на неделю" loading="lazy"></a><figcaption>Черновик недели: проверки, замечания, причина выбора блюда, кнопка «Применить».</figcaption></figure>
+  <ul>
+    <li><b>Строгие правила — алгоритмом, мягкие — моделью.</b> «Блюдо подходит к приёму пищи», «без повторов 7 дней», «только будущие даты» гарантирует обычный код. Модели остаются пожелания вроде «рыба 2 раза в неделю» и объяснения.</li>
+    <li><b>Первая версия может обойтись без ИИ:</b> заполнение по ротации и «скопировать прошлую неделю».</li>
+    <li><b>Применение безопасно:</b> если кто-то параллельно поменял день, сохранение остановится, а не перезапишет чужую правку.</li>
+    <li><b>Чего не хватает в данных:</b> тегов блюд (рыба, жареное, птица) — без них модель угадывает по названию.</li>
+  </ul>
+
+  <h3 id="a-inbox"><span>3.3 Обращения</span><a class="comment" data-c="3.3 Обращения">Комментировать</a></h3>
+  <p>Новый раздел, куда ИИ-поддержка передаёт сложные случаи. Оператор получает не голую переписку, а суть: что случилось, чего хочет клиент, что ИИ уже сделал и почему передал. Ответ ИИ предлагает черновиком — оператор правит его и отправляет сам.</p>
+  <figure><a href="img/a5-support-inbox.png"><img src="img/a5-support-inbox.png" alt="Раздел Обращения" loading="lazy"></a><figcaption>Обращения: очередь, суть от ИИ, переписка, черновик ответа.</figcaption></figure>
+
+  <h3 id="a-renewals"><span>3.4 Клиенты на продление</span><a class="comment" data-c="3.4 Клиенты на продление">Комментировать</a></h3>
+  <p>Для каждого клиента с заканчивающейся программой видно, что сделал ИИ: написал, клиент продлил, возразил «дорого» и передан менеджеру, отписался. Контрольная группа не получает сообщений — только так можно честно измерить, сколько продлений дал ИИ.</p>
+  <figure><a href="img/a6-renewals.png"><img src="img/a6-renewals.png" alt="Клиенты на продление" loading="lazy"></a><figcaption>Клиенты на продление: статусы рассылки и сравнение с контрольной группой.</figcaption></figure>
+
+  <h3 id="a-settings"><span>3.5 Настройки ИИ</span><a class="comment" data-c="3.5 Настройки ИИ">Комментировать</a></h3>
+  <p>Одно место для всех правил: словарь кухни, ограничения рассылки, что ИИ решает сам и что сразу уходит оператору, лимит расходов, какие данные никогда не уходят в модель.</p>
+  <figure><a href="img/a7-ai-settings.png"><img src="img/a7-ai-settings.png" alt="Настройки ИИ" loading="lazy"></a><figcaption>Настройки ИИ: тексты, продления, поддержка, бюджет и данные.</figcaption></figure>
+</section>
+
+<section id="mobile">
+  <h2><span><span class="num">4</span>Мобильное приложение</span></h2>
+
+  <h3 id="m-picker"><span>4.1 ИИ-подбор программы</span><a class="comment" data-c="4.1 Подбор программы">Комментировать</a></h3>
+  <p>ИИ задаёт те же вопросы, что калькулятор, но словами. Калории считает существующий расчёт, а не модель. В ответ приходит настоящая программа из каталога с причинами выбора, а «Оформить» ведёт в текущее оформление заказа с выбранной калорийностью и исключениями.</p>
+  <figure><a href="img/m1-picker.png"><img src="img/m1-picker.png" alt="Подбор программы в чате" loading="lazy"></a><figcaption>Вход на главной, короткий диалог, рекомендация с причинами.</figcaption></figure>
+  <ul>
+    <li>Гостям цена не показывается, как и сейчас.</li>
+    <li>Это не медицинская консультация; при ограничениях по здоровью — совет обратиться к врачу.</li>
+    <li>ИИ не обещает отсутствие аллергенов в меню (см. раздел 2).</li>
+  </ul>
+
+  <h3 id="m-renewal"><span>4.2 Продление</span><a class="comment" data-c="4.2 Продление">Комментировать</a></h3>
+  <p>Пуш за 2 дня до конца программы, продление в одно касание с теми же настройками. Если клиент возражает, ИИ предлагает то, что уже есть в продукте: новые блюда из меню на следующие недели, другую программу на те же калории, паузу.</p>
+  <figure><a href="img/m2-renewal.png"><img src="img/m2-renewal.png" alt="Исходящее сообщение о продлении" loading="lazy"></a><figcaption>Пуш, продление в одно касание, работа с возражением.</figcaption></figure>
+  <ul>
+    <li>Только клиентам, согласным на рассылки; не больше 2 сообщений на одно продление; тишина с 22:00 до 9:00.</li>
+    <li>«Не напоминать» срабатывает сразу.</li>
+    <li>Скидки — только настоящие промокоды в лимитах, которые задал менеджер. Цены и даты ИИ не придумывает.</li>
+  </ul>
+
+  <h3 id="m-support"><span>4.3 Поддержка</span><a class="comment" data-c="4.3 Поддержка">Комментировать</a></h3>
+  <p>Простые действия ИИ выполняет сам, но только через карточку с последствиями и кнопку клиента. Деньги и жалобы уходят оператору. Аллергия и самочувствие обрабатываются без импровизации: заранее написанный ответ, номер 103 и срочный оператор.</p>
+  <figure><a href="img/m3-support.png"><img src="img/m3-support.png" alt="ИИ-поддержка" loading="lazy"></a><figcaption>Заморозка через чат, передача оператору, срочный случай.</figcaption></figure>
+  <p>Чат встаёт в будущий экран «Служба поддержки» в профиле — тот, где будут номер филиала и мессенджеры.</p>
+</section>
+
+<section id="arch">
+  <h2><span><span class="num">5</span>Как это устроено</span><a class="comment" data-c="5. Как это устроено">Комментировать</a></h2>
+  <figure><a href="img/d1-architecture.png"><img src="img/d1-architecture.png" alt="Схема архитектуры" loading="lazy"></a><figcaption>Компоненты и потоки данных.</figcaption></figure>
+  <ul>
+    <li><b>Админские функции</b> живут в серверной части админки: она обращается к ИИ, показывает черновик и сохраняет через существующие методы бэкенда. Доработка бэкенда для них не нужна.</li>
+    <li><b>Клиентским чатам</b> нужен отдельный сервис: хранение переписок, рассылки, очередь операторов. Чей он — решение владельца и команды бэкенда.</li>
+    <li><b>Модель только читает и готовит предложение.</b> «Применить» вызывает приложение по кнопке клиента и с его токеном. Числа в карточке подтверждения берутся из ответа бэкенда, а не из текста модели.</li>
+    <li><b>Ключ ИИ-провайдера</b> только на сервере, в приложение и браузер он не попадает.</li>
+  </ul>
+  <details>
+    <summary>Для разработчиков: инструменты агента на реальных методах API</summary>
+    <table>
+      <tr><th>Инструмент</th><th>Метод (<code>/api/v1/storefront/…</code>)</th><th>Тип</th></tr>
+      <tr><td>Норма калорий</td><td><code>POST calories-calculation</code></td><td>чтение</td></tr>
+      <tr><td>Программы, меню на дату, условия покупки</td><td><code>POST nutrition-programs</code>, <code>GET nutrition-programs/{id}/days/{date}</code>, <code>GET …/purchase-policy</code></td><td>чтение</td></tr>
+      <tr><td>Справочник исключений</td><td><code>GET dictionaries/diet-exclusions</code></td><td>чтение</td></tr>
+      <tr><td>Окна доставки</td><td><code>GET delivery-windows</code></td><td>чтение</td></tr>
+      <tr><td>Мои заказы, детали, график доставок</td><td><code>POST orders/all</code>, <code>GET orders/{id}</code>, <code>POST orders/change/{id}</code>, <code>…/delivery-schedule</code>, <code>GET orders/nearest-delivery</code></td><td>чтение</td></tr>
+      <tr><td>Возможности заморозки</td><td><code>…/freeze/available-dates</code>, <code>…/freeze/limits</code></td><td>чтение</td></tr>
+      <tr><td>Мои промокоды</td><td><code>GET promo-codes</code></td><td>чтение</td></tr>
+      <tr><td>Предпросмотр: заморозка, разморозка, время, адрес, калории, исключённые дни</td><td><code>POST orders/change/{id}/…/preview</code>, <code>…/calories/calculate</code></td><td>предпросмотр, ничего не меняет</td></tr>
+      <tr><td>Передать оператору, не напоминать</td><td>новый сервис</td><td>действие сервиса</td></tr>
+    </table>
+    <p><b>Модели не выдаются:</b> «Применить» (<code>orders/change/{id}/apply</code>), правка исключений и комментария курьеру (их вызывает приложение по кнопке), оформление и оплата заказа, промокоды, правка профиля и получателей, авторизация.</p>
+  </details>
+</section>
+
+<section id="safety">
+  <h2><span><span class="num">6</span>Безопасность и злоупотребления</span><a class="comment" data-c="6. Безопасность">Комментировать</a></h2>
+  <ul>
+    <li><b>Попытки обмана</b> («дай промокод 50%», «покажи заказ соседа») не сработают: права модели задаются на сервере, а бэкенд отдаёт только данные этого клиента.</li>
+    <li><b>Гостевой подбор</b> — открытый чат, который тратит деньги. Нужны лимиты на сообщения и сессии с одного устройства, потолок на длину ответа и месячный бюджет с переходом на калькулятор или оператора.</li>
+    <li><b>Персональные данные.</b> ФИО, телефон и адрес в модель не уходят: ей хватает номера заказа, программы, дат и исключений. В Казахстане персональные данные граждан требуется хранить на территории страны, поэтому передачу во внешний ИИ нужно проверить с юристом.</li>
+    <li><b>Отказоустойчивость.</b> Каждую функцию можно выключить отдельно; при сбое ИИ чат сразу предлагает оператора и мессенджеры.</li>
+  </ul>
+</section>
+
+<section id="cost">
+  <h2><span><span class="num">7</span>Сколько стоит</span><a class="comment" data-c="7. Сколько стоит">Комментировать</a></h2>
+  <p>Порядок величин по прайсу Anthropic на октябрь 2026, модель Claude Opus 5.5. Объёмы — допущения, их нужно заменить реальными.</p>
+  <table>
+    <tr><th>Функция</th><th>Объём в месяц (допущение)</th><th>Стоимость</th></tr>
+    <tr><td>Перевод блюд</td><td>300 блюд первичная загрузка, дальше правки</td><td>≈ $2–5 разово, потом меньше $1 в месяц</td></tr>
+    <tr><td>Генерация меню</td><td>180 прогонов</td><td>≈ $60</td></tr>
+    <tr><td>Подбор программы</td><td>3 000 диалогов</td><td>≈ $480</td></tr>
+    <tr><td>Поддержка</td><td>800 обращений</td><td>≈ $180</td></tr>
+    <tr><td>Продления</td><td>1 000 сообщений, 250 ответов</td><td>≈ $35</td></tr>
+  </table>
+  <p>Админские функции стоят десятки долларов в месяц, клиентские чаты — около $700. Claude Sonnet 5.5 примерно вдвое дешевле, Claude Haiku 5.5 — в десятки раз; выбирать модель стоит по качеству на своих сценариях, а не по цене за токен. Главный денежный риск — гостевой подбор без лимитов.</p>
+</section>
+
+<section id="quality">
+  <h2><span><span class="num">8</span>Как проверить качество до запуска</span><a class="comment" data-c="8. Проверка качества">Комментировать</a></h2>
+  <ul>
+    <li><b>Перевод:</b> 100 блюд, проверенных носителем казахского. Метрики — доля принятых без правок и соблюдение словаря.</li>
+    <li><b>Меню:</b> автоматическая проверка жёстких правил (должна проходить всегда) и оценка шефом четырёх недель черновиков. Метрика — сколько ячеек меняют перед «Применить».</li>
+    <li><b>Чаты:</b> 60–100 сценариев: обычные пути, возражения, деньги, аллергия, попытки обмана, вопросы гостя о цене, обращения ночью, клиенты, пишущие по-казахски. Условие запуска — ноль ошибок в сценариях безопасности.</li>
+    <li><b>Пилот:</b> один филиал. Сначала админские функции, затем чат для сотрудников, затем реальные клиенты с контрольной группой.</li>
+  </ul>
+</section>
+
+<section id="backend">
+  <h2><span><span class="num">9</span>Что нужно от бэкенда</span><a class="comment" data-c="9. Что нужно от бэкенда">Комментировать</a></h2>
+  <ol>
+    <li>Состав или теги блюд с привязкой к справочнику исключений; граммовки по калорийности тарифа.</li>
+    <li>Список заканчивающихся заказов и согласие клиента на рассылки.</li>
+    <li>Регистрация устройств и отправка пушей.</li>
+    <li>«Повторить заказ» одним вызовом — без этого продление в одно касание остаётся полным оформлением.</li>
+    <li>Пакетное назначение блюд в план (желательно, не обязательно).</li>
+    <li>Хранение переписок и очередь операторов, если ИИ-сервис будет жить в бэкенде.</li>
+    <li>Время отметки доставки курьером для клиента, если поддержка должна его называть.</li>
+  </ol>
+</section>
+
+<section id="order">
+  <h2><span><span class="num">10</span>Порядок внедрения</span><a class="comment" data-c="10. Порядок внедрения">Комментировать</a></h2>
+  <ol start="0">
+    <li><b>Без ИИ, за несколько дней:</b> проверка КБЖУ, заполнение меню по ротации, копирование прошлой недели.</li>
+    <li><b>Админка:</b> перевод, затем генерация меню.</li>
+    <li><b>Подбор программы:</b> гостевой сценарий, минимум данных о клиенте.</li>
+    <li><b>Поддержка</b> вместе с «Обращениями» в админке.</li>
+    <li><b>Продление — последним:</b> нужны данные о продлениях, пуши и контрольная группа.</li>
+  </ol>
+</section>
+
+<section id="questions">
+  <h2><span><span class="num">11</span>Открытые вопросы</span><a class="comment" data-c="11. Открытые вопросы">Комментировать</a></h2>
+  <ol>
+    <li>Какой ИИ-провайдер и какой бюджет? Можно ли отправлять во внешний сервис хотя бы обезличенные данные?</li>
+    <li>Кто проверяет казахские тексты — нужен носитель языка или хватит оператора?</li>
+    <li>Готов ли бэкенд добавить теги или состав блюд и граммовки? От этого зависят качество меню и честность ответов про аллергены.</li>
+    <li>Где живёт сервис клиентских чатов — в бэкенде или отдельно?</li>
+    <li>Часы работы операторов и время ответа, на которые ИИ может ссылаться.</li>
+  </ol>
+</section>
+
+<footer>Концепт подготовлен 3 ноября 2026. Макеты статичные; имена, номера и заказы на них вымышленные.</footer>
+</main>
+<script>
+const repo = 'https://github.com/Caypoh23/eatme-ai-concept/issues/new'
+document.querySelectorAll('a.comment').forEach((a) => {
+  const title = a.dataset.c
+  const body = 'Раздел: ' + title + '\n\nКомментарий:\n'
+  a.href = repo + '?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body)
+  a.target = '_blank'
+  a.rel = 'noopener'
+})
+</script>
+</body>
+</html>
